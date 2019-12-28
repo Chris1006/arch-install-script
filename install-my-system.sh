@@ -71,5 +71,8 @@ mount DRIVE_EFI /mnt/boot/EFI
 pacstrap /mnt base base-devel btrfs-progs vim zsh git linux-zen linux-zen-headers linux-firmware
 
 
-
+# setting up target system
 arch-chroot /mnt sh /setup-sys.sh
+
+# chrooting to target system
+arch-chroot /mnt

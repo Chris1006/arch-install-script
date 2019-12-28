@@ -36,4 +36,8 @@ systemctl enable NetworkManager
 # grub
 pacman -S --no-confirm grub efibootmgr
 
+echo "GRUB_ENABLE_CRYPTODISK=y" >> /etc/default/grub
+UUID="$(cryptsetup luksUUID /dev/sda2)"
+sed -i "s/GRUB_CMDLINE_LINUX=\"\"/GRUB_CMDLINE_LINUX=\"luks.name=$UUID=main rd.luks.key=/root/root_device.key rootflags=subvol=@\"/"
+
 grub-install --efi-directory=/boot/EFI target=x86_64-efi --bootloader-id=grub --recheck --debug
