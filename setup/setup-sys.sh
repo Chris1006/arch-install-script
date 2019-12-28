@@ -78,11 +78,10 @@ pacman -S --noconfirm sudo
 
 # trizen
 
-mkdir ~/AUR && cd ~/AUR
-git clone https://aur.archlinux.org/trizen
-cd trizen
-su chris -c "makepkg -si --noconfirm"
-rm -rf ~/AUR
+su chris -c "cd ~ && mkdir ~/AUR && cd ~/AUR && git clone https://aur.archlinux.org/trizen"
+
+su chris -c "cd ~/AUR/trizen && makepkg -si --noconfirm"
+su chris -c "rm -rf ~/AUR"
 
 # xorg
 su chris -c "trizen -S --noconfirm xorg-server xorg-xinit virtualbox-guest-utils"
