@@ -76,4 +76,10 @@ gen-fstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt sh /setup-sys.sh
 
 # chrooting to target system
-arch-chroot /mnt
+# arch-chroot /mnt
+
+# rebooting system
+umount -R /mnt
+swapoff $SWAP_DRIVE
+
+reboot

@@ -38,6 +38,30 @@ pacman -S --noconfirm grub efibootmgr
 
 echo "GRUB_ENABLE_CRYPTODISK=y" >> /etc/default/grub
 UUID="$(cryptsetup luksUUID /dev/sda2)"
-sed -i "s/GRUB_CMDLINE_LINUX=\"\"/GRUB_CMDLINE_LINUX=\"luks.name=$UUID=main rd.luks.key=/root/root_device.key rootflags=subvol=@\"/"
+sed -i "s/GRUB_CMDLINE_LINUX=.*/#GRUB_CMDLINE_LINUX/"
+
+echo "GRUB_CMDLINE_LINUX=luks.name=$UUID=main rd.luks.key=/root/root_device.key bootflags=subvol=@" >> /etc/default/grub
 
 grub-install --efi-directory=/boot/EFI target=x86_64-efi --bootloader-id=grub --recheck --debug
+grub-mkconfig -o /boot/grub/grub.cfg
+
+# key for harddrive
+
+dd if=/dev/urandom bs=1M count=4 of=/root/root_device.key
+chmod 600 /root/root_device.key
+
+cryptsetup luksAddKey /dev/sda2 /root/root_device.key
+
+echo "main /dev/disk/by-uuid/$UUID /root/root_device.key luks" >> /etc/crypttab
+
+# initramfs
+
+sed -i s/FILES=.*/\#FILES/ /etc/mkinitcpio.conf
+sed -i s/HOOKS=.*/\#HOOKS/ /etc/mkinitcpio.conf
+
+echo "FILES=(/root/root_device.key)" >> /etc/mkinitcpio.conf
+echo "HOOKS=(base systemd autodetect keyboard sd-vconsole sd-lvm2 sd-encrypt modconf block filesystem btrfs fsck)" >> /etc/mkinitcpio.conf
+
+mkinitcpio -P
+
+chmod 600 /boot/initramfs-*
