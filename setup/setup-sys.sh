@@ -60,7 +60,7 @@ sed -i s/FILES=.*/\#FILES/ /etc/mkinitcpio.conf
 sed -i s/HOOKS=.*/\#HOOKS/ /etc/mkinitcpio.conf
 
 echo "FILES=(/root/root_device.key)" >> /etc/mkinitcpio.conf
-echo "HOOKS=(base systemd autodetect keyboard sd-vconsole sd-lvm2 sd-encrypt modconf block filesystem btrfs fsck)" >> /etc/mkinitcpio.conf
+echo "HOOKS=(base systemd autodetect keyboard sd-vconsole sd-lvm2 sd-encrypt modconf block filesystems btrfs fsck)" >> /etc/mkinitcpio.conf
 
 mkinitcpio -P
 
