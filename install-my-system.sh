@@ -68,7 +68,7 @@ mount $ROOT_DRIVE /mnt/.btrfs
 
 mount $DRIVE_EFI /mnt/boot/EFI
 
-pacstrap /mnt base base-devel btrfs-progs vim zsh git linux-zen linux-zen-headers linux-firmware
+pacstrap /mnt base base-devel btrfs-progs vim zsh git linux-zen linux-zen-headers linux-firmware lvm2 cryptsetup filesystem
 
 gen-fstab -U /mnt >> /mnt/etc/fstab
 
