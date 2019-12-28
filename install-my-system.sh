@@ -41,6 +41,8 @@ mkfs.btrfs -L p_root $ROOT_DRIVE
 
 swapon $SWAP_DRIVE
 
+umount -R /mnt
+
 mount $ROOT_DRIVE /mnt
 
 cd /mnt
