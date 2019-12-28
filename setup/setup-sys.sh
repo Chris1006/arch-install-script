@@ -22,10 +22,10 @@ echo arch-encrypted >> /etc/hostname
 passwd
 
 # system update
-pacman -Syyu --no-confirm
+pacman -Syyu --noconfirm
 
 # services
-pacman -S --no-confirm networkmanager acpid dbus avahi cronie
+pacman -S --noconfirm networkmanager acpid dbus avahi cronie
 
 systemctl enable acpid
 systemctl enable avahi-daemon
@@ -34,7 +34,7 @@ systemctl enable systemd-timesyncd
 systemctl enable NetworkManager
 
 # grub
-pacman -S --no-confirm grub efibootmgr
+pacman -S --noconfirm grub efibootmgr
 
 echo "GRUB_ENABLE_CRYPTODISK=y" >> /etc/default/grub
 UUID="$(cryptsetup luksUUID /dev/sda2)"
