@@ -81,58 +81,58 @@ pacman -S --noconfirm sudo
 mkdir ~/AUR && cd ~/AUR
 git clone https://aur.archlinux.org/trizen
 cd trizen
-makepkg -si --noconfirm
+su chris -c "makepkg -si --noconfirm"
 rm -rf ~/AUR
 
 # xorg
-trizen -S --noconfirm xorg-server xorg-xinit virtualbox-guest-utils 
+su chris -c "trizen -S --noconfirm xorg-server xorg-xinit virtualbox-guest-utils"
 localectl set-x11-keymap de pc105 nodeadkeys
 
 # fonts
-trizen -S --noconfirm noto-fonts noto-fonts-emoji
+su chris -c "trizen -S --noconfirm noto-fonts noto-fonts-emoji"
 
 # pulseaudio
-trizen -S --noconfirm pulseaudio pavucontrol
+su chris -c "trizen -S --noconfirm pulseaudio pavucontrol"
 
 # i3
-trizen -S --noconfirm i3-gaps i3blocks i3lock dmenu dunst picom
+su chris -c "trizen -S --noconfirm i3-gaps i3blocks i3lock dmenu dunst picom"
 
 # zsh
-trizen -S --noconfirm zsh zsh-completions zsh-syntax-highlighting
+su chris -c "trizen -S --noconfirm zsh zsh-completions zsh-syntax-highlighting"
 
 # suckless
-trizen -S --noconfirm st
+su chris -c "trizen -S --noconfirm st"
 
 # security
 
-trizen -S pam-gnupg
+su chris -c "trizen -S pam-gnupg"
 
 # file manager
 
-trizen -S --noconfirm ranger
+su chris -c "trizen -S --noconfirm ranger"
 
 # browser
 
-trizen -S --noconfirm firefox
+su chris -c "trizen -S --noconfirm firefox"
 
 # image viewer
 
-trizen -S --noconfirm sxiv scrot
+su chris -c "trizen -S --noconfirm sxiv scrot"
 
 # music
 
-trizen -S --noconfirm mpd mpc ncmpcpp
+su chris -c "trizen -S --noconfirm mpd mpc ncmpcpp"
 
 # video
 
-trizen -S --noconfirm youtube-dl youtube-viewer mpv
+su chris -c "trizen -S --noconfirm youtube-dl youtube-viewer mpv"
 
 # mail
 
-trizen -S --noconfirm neomutt mutt-wizard-git
+su chris -c "trizen -S --noconfirm neomutt mutt-wizard-git"
 
 # utils
 
-trizen -S --noconfirm htop wget curl stow
+su chris -c "trizen -S --noconfirm htop wget curl stow"
 
 su chris -c "cd ~ && git clone https://github.com/chris1006/my-dot-files && cd my-dot-files && stow * -t ~"
