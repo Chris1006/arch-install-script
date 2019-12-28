@@ -66,6 +66,8 @@ mount $ROOT_DRIVE -o subvol=@log /mnt/var/log
 mount $ROOT_DRIVE -o subvol=@pkg /mnt/var/cache/pacman/pkg
 mount $ROOT_DRIVE /mnt/.btrfs
 
+mount DRIVE_EFI /mnt/boot/EFI
+
 pacstrap /mnt base base-devel btrfs-progs vim zsh git linux-zen linux-zen-headers linux-firmware
 
 
