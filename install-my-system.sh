@@ -45,20 +45,18 @@ umount -R /mnt
 
 mount $ROOT_DRIVE /mnt
 
-cd /mnt
-
 # create btrfs subvols
-btrfs subvol create @
-btrfs subvol create @home
-btrfs subvol create @log
-btrfs subvol create @pkg
-btrfs subvol create @snapshots
-
-cd /
+btrfs subvol create /mnt/@
+btrfs subvol create /mnt/@home
+btrfs subvol create /mnt/@log
+btrfs subvol create /mnt/@pkg
+btrfs subvol create /mnt/@snapshots
 
 umount -R /mnt
 
 mount $ROOT_DRIVE -o subvol=@ /mnt
+
+cp ./setup/setup-sys.sh /mnt/
 
 mkdir -p /mnt/{boot/EFI,home,var/log,var/cache/pacman/pkg,.snapshots,.btrfs}
 
@@ -70,4 +68,6 @@ mount $ROOT_DRIVE /mnt/.btrfs
 
 pacstrap /mnt base base-devel btrfs-progs vim zsh git linux-zen linux-zen-headers linux-firmware
 
-arch-chroot /mnt
+
+
+arch-chroot /mnt sh /setup-sys.sh
