@@ -56,7 +56,7 @@ cd /
 
 umount -R /mnt
 
-mount -o subvol=@ $ROOT_DRIVE /mnt
+mount $ROOT_DRIVE -o subvol=@ /mnt
 
 mkdir -p /mnt/{boot/EFI,home,var/log,var/cache/pacman/pkg,.snapshots,.btrfs}
 
