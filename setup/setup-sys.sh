@@ -33,6 +33,15 @@ systemctl enable cronie
 systemctl enable systemd-timesyncd
 systemctl enable NetworkManager
 
+# key for harddrive
+
+dd if=/dev/urandom bs=1M count=4 of=/root/root_device.key
+chmod 600 /root/root_device.key
+
+cryptsetup luksAddKey /dev/sda2 /root/root_device.key
+
+echo "main /dev/disk/by-uuid/$UUID /root/root_device.key luks" >> /etc/crypttab
+
 # grub
 pacman -S --noconfirm grub efibootmgr
 
@@ -44,15 +53,6 @@ echo "GRUB_CMDLINE_LINUX=luks.name=$UUID=main rd.luks.key=/root/root_device.key 
 
 grub-install --efi-directory=/boot/EFI target=x86_64-efi --bootloader-id=grub --recheck --debug
 grub-mkconfig -o /boot/grub/grub.cfg
-
-# key for harddrive
-
-dd if=/dev/urandom bs=1M count=4 of=/root/root_device.key
-chmod 600 /root/root_device.key
-
-cryptsetup luksAddKey /dev/sda2 /root/root_device.key
-
-echo "main /dev/disk/by-uuid/$UUID /root/root_device.key luks" >> /etc/crypttab
 
 # initramfs
 

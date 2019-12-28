@@ -82,4 +82,4 @@ arch-chroot /mnt sh /setup-sys.sh
 umount -R /mnt
 swapoff $SWAP_DRIVE
 
-reboot
+#reboot
