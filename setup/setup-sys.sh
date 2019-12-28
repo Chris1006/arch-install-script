@@ -25,7 +25,7 @@ passwd
 pacman -Syyu --no-confirm
 
 # services
-pacman -S networkmanager acpid dbus avahi cronie
+pacman -S --no-confirm networkmanager acpid dbus avahi cronie
 
 systemctl enable acpid
 systemctl enable avahi-daemon
@@ -34,6 +34,6 @@ systemctl enable systemd-timesyncd
 systemctl enable NetworkManager
 
 # grub
-pacman -S grub efibootmgr
+pacman -S --no-confirm grub efibootmgr
 
 grub-install --efi-directory=/boot/EFI target=x86_64-efi --bootloader-id=grub --recheck --debug
