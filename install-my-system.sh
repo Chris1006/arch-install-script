@@ -36,8 +36,8 @@ lvcreate -L 2GB -n $SWAP_NAME $LVM_NAME
 lvcreate -l 100%FREE -n $ROOT_NAME $LVM_NAME
 
 # setup lvm drives (swap and root)
-mkswap -L p_swap $SWAP_DRIVE
-mkfs.btrfs -L p_root $ROOT_DRIVE
+mkswap --force -L p_swap $SWAP_DRIVE
+mkfs.btrfs --force -L p_root $ROOT_DRIVE
 
 swapon $SWAP_DRIVE
 
