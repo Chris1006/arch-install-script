@@ -80,7 +80,7 @@ pacman -S --noconfirm sudo
 
 su chris -c "cd ~ && mkdir ~/AUR && cd ~/AUR && git clone https://aur.archlinux.org/trizen"
 
-su chris -c "cd ~/AUR/trizen && makepkg -si --noconfirm"
+su chris -c "cd ~/AUR/trizen && makepkg -Si --noconfirm"
 su chris -c "rm -rf ~/AUR"
 
 # xorg
